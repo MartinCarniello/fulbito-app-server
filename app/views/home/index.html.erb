@@ -1,0 +1,24 @@
+<div ng-controller="RegisterCtrl">
+  <h1>Registrar</h1>
+  <label>Nombre de usuario: </label>
+  <input type="text" ng-model="username" placeholder="EJ: Diegote91">
+  <input type="button" ng-click="validateUser();" value="Validar nombre de usuario">
+  <br>
+  <label>Contraseña: </label>
+  <input type="password" ng-model="password" placeholder="EJ: *******">
+  <br>
+  <label>Confirma la contraseña: </label>
+  <input type="password" ng-model="passwordConfirmation" placeholder="EJ: *******">
+  <label ng-show="password != passwordConfirmation">La contraseña es incorrecta</label>
+  <br>
+  <label>Nombre y apellido: </label>
+  <input type="text" ng-model="realName" placeholder="EJ: Diego Armando Maradona">
+  <br>
+  <label>Fecha de nacimiento: </label>
+  <input type="text" ng-model="birthDate" placeholder="EJ: dd/mm/aaaa">
+  <br>
+  <label>Posicion: </label>
+  <select ng-model="position" ng-options="position for position in positions"></select>
+  <br>
+  <input type="button" value="Registrar" ng-disabled="userExist || password != passwordConfirmation || realName == null || birthDate == null || position == null || username != realUser" ng-click="register();">
+</div>
