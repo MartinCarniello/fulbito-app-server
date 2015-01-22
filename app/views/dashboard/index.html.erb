@@ -1,0 +1,24 @@
+<div ng-controller="DashboardCtrl">
+	
+	<%= render partial: "navigator" %>
+
+	<div class="jumbotron">
+		<div id="home" ng-if="navOption === 0">
+			<%= render partial: "home" %>
+		</div>
+
+		<div id="friends" ng-if="navOption === 1">
+			<%= render partial: "friends" %>
+		</div>
+
+		<div id="matchs" ng-if="navOption === 2">
+			<%= render partial: "matchs" %>
+		</div>
+
+		<div id="tournament" ng-if="navOption === 3">
+			<%= render partial: "tournament" %>
+		</div>
+	</div>
+
+</div>
+

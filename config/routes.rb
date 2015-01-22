@@ -1,19 +1,36 @@
 FulbitoAppServer::Application.routes.draw do
 
-  #####################
-  #   USER'S SERVICE  #
-  #####################
-  get "users/new"
+  #######################
+  #    USER'S SERVICE   #
+  #######################
+  get "users/index"
   get "users/show"
+  get "users/get"
   get "users/delete"
+  get "users/search"
   get "users/addFriend"
   get "users/showFriends"
 
 
-  #####################
-  #     HOME PAGE     #
-  #####################
+  #######################
+  #      HOME PAGE      #
+  #######################
   get "home/index"
+  post "home/login"
+
+
+  #######################
+  #    Register Page    #
+  #######################
+  get "register/index"
+  post "register/create"
+
+
+  #######################
+  # User Dashboard Page #
+  #######################
+  get "dashboard/index"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

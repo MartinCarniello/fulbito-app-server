@@ -1,0 +1,63 @@
+<div class="jumbotron horizontal-center" ng-controller="RegisterCtrl">
+  <h2 class="text-center">Registrar</h2>
+  <hr>
+
+  <%= form_for @user, :url => { :action => "create" }, html: {class: "form-horizontal"}  do |f|  %>
+    <div class="form-group">
+      <%= f.label :username, class: "control-label col-sm-2" %>
+      <div class="col-sm-4">
+        <%= f.text_field  :username, class: "form-control", placeholder: "EJ: Diegote91", "ng-model" => "username" %>
+      </div>
+      <div class="col-sm-2">
+        <input type="button" class="btn btn-info" ng-click="validateUser();" value="Validate Name">
+      </div>
+      <div class="col-sm-2">
+        <label ng-show="!userExist && userNameValidated">Nombre Correcto</label>
+        <label ng-show="userExist">Nombre Incorrecto</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, class: "control-label col-sm-2" %>
+      <div class="col-sm-3">
+        <%= f.password_field  :password, class: "form-control", placeholder: "EJ: *******", "ng-model" => "password" %>
+      </div>
+      <%= f.label :confirm_password, class: "control-label col-sm-2" %>
+      <div class="col-sm-3">
+        <%= f.password_field  :confirm_password, class: "form-control", placeholder: "EJ: *******", "ng-model" => "passwordConfirmation" %>
+      </div>
+      <div class="col-sm-2">
+        <label ng-show="password != passwordConfirmation">Incorrecta</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :real_name, class: "control-label col-sm-2" %>
+      <div class="col-sm-8">
+        <%= f.text_field  :real_name, class: "form-control", placeholder: "EJ: Diegote91", "ng-model" => "realName" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :birth_date, class: "control-label col-sm-2" %>
+      <div class="col-sm-8">
+        <%= f.text_field  :birth_date, class: "form-control", placeholder: "dd/mm/yyyy", "ng-model" => "birthDate" %>
+        <!--
+        <input type="date" class="form-control" ng-model="birthDate" name="user[birth_date]">
+        -->
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :position, class: "control-label col-sm-2" %>
+      <div class="col-sm-8">
+        <%= f.select :position, @positions, {}, { class: "form-control", "ng-model" => "position" } %>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit "Register", class: "btn btn-primary btn-lg btn-success", "ng-disabled" => "disableRegisterButton();" %>
+      <%= link_to 'Login', { controller: "home", action: "index" }, method: :get, class: "btn btn-primary btn-lg btn-info" %>
+    </div>
+  <%end%>
+</div>

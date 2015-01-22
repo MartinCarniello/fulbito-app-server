@@ -6,3 +6,8 @@ require File.expand_path('../config/application', __FILE__)
 FulbitoAppServer::Application.load_tasks
 
 require 'neography/tasks'
+
+task :db_start do
+   system("sudo /etc/init.d/postgresql start")
+   system("rake neo4j:start")
+end

@@ -1,30 +1,32 @@
 class UsersController < ApplicationController
-  def new
-    hashed_password = Digest::SHA2.hexdigest(SecureRandom.base64(8) + params[:password])
-    date_parsed = Date.strptime(params[:birth_date], "%d/%m/%Y")
-    user = User.new(username: params[:username], password: hashed_password, real_name: params[:real_name],
-                                                            birth_date: date_parsed, position: params[:position])
-
-    if !user.created?
-      user.save
-      user.create_node
-      render json: Message.new("El usuario se ha creado exitosamente")
-    else
-      render json: Message.new("El usuario no se ha podido crear exitosamente")
-    end
+  def index
+    render json: User.get_all
   end
 
   def show
-    if(user = User.getUser(params[:username]))
+    if(user = User.where(id: params[:id]))
       render json: user
     else
       render json: Message.new("El usuario no existe")
     end
   end
 
-  def delete
-    User.deleteUser(params[:username])
+  def get
+    if(user = User.find_by_name(params[:username]))
+      render json: user
+    else
+      render json: Message.new("El usuario no existe")
+    end
+  end
+
+  def destroy
+    User.delete_user(params[:username])
     render json: Message.new("El usuario #{params[:username]} ha sido eliminado")
+  end
+
+  def search
+    username = params[:username].downcase
+    render json: User.where("username like ?", "%#{username}%")
   end
 
   def addFriend

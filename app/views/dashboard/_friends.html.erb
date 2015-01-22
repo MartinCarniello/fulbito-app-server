@@ -1,0 +1,31 @@
+<div class="container" ng-controller="AddFriendsCtrl">
+	<form class="well form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-sm-2">Friend's Search:</label>
+			<div class="col-sm-6">
+				<input type="text" ng-model="usernameToSearch" class="form-control input-medium search-query" placeholder="Keywords...">
+			</div>
+			<div class="col-sm-2">
+				<button type="submit" class="btn btn-success" ng-click="searchFriends()">Search</button>
+			</div>
+		</div>
+		
+		<p class="help-block">Try for example: "Diego Maradona" or "Johann Cruyff"</p>		
+  </form>
+	<pre>
+	<table class="table table-striped">
+  	<tr>
+  		<th>Username</th>
+  		<th>Real Name</th>
+  		<th>Position</th>
+  		<th>Add</th>
+  	</tr>
+  	<tr ng-repeat="friend in friends">
+  		<td>{{friend.username}}</td>
+  		<td>{{friend.real_name}}</td>
+  		<td>{{friend.position}}</td>
+  		<td><button class="btn btn-sm btn-info" ng-click="addFriend(<%= params[:id] %>, friend.username);">Add</button></td>
+  	</tr>
+  </table>
+	</pre>
+</div>
