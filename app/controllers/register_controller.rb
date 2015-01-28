@@ -27,6 +27,7 @@ class RegisterController < ApplicationController
           flash[:danger] = "El usuario no se ha podido crear correctamente"
         end
       end
+    else
       flash[:danger] = "El usuario ya existe"
     end    	
     

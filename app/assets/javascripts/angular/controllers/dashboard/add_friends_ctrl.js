@@ -11,10 +11,8 @@ app.controller('AddFriendsCtrl', ['$scope', '$resource', '$http', function($scop
       username = data[0].username;
       
       $http.get('/users/addFriend?username=' + username + '&friend_username=' + friendUsername).success(function(data) {
-        $scope.friends.forEach(function(friend, index, array){
-          if(friend.username === friendUsername){
-            $scope.friends.remove(index);
-          }
+        $scope.friends = $scope.friends.filter(function(friend) {
+          return friend.username !== friendUsername;
         });
       });
     });
